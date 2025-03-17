@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useAnimation, type MotionProps } from "framer-motion";
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, type Ref } from "react"; 
 import { rippleVariant, scaleHoverVariant } from "../lib/animation-variants";
 
 interface AnimatedButtonProps extends MotionProps {
@@ -11,7 +11,7 @@ interface AnimatedButtonProps extends MotionProps {
 }
 
 export const AnimatedButton = forwardRef<HTMLButtonElement, AnimatedButtonProps>(
-  ({ children, className = "", onClick, ...props }, ref) => {
+  ({ children, className = "", onClick, ...props }, ref: Ref<HTMLButtonElement>) => { 
     const [ripples, setRipples] = useState<{ x: number; y: number; id: number }[]>([]);
     const controls = useAnimation();
 
@@ -27,7 +27,7 @@ export const AnimatedButton = forwardRef<HTMLButtonElement, AnimatedButtonProps>
       }, 800);
 
       if (onClick) {
-        onClick(e); 
+        onClick(e);
       }
     };
 
@@ -48,7 +48,7 @@ export const AnimatedButton = forwardRef<HTMLButtonElement, AnimatedButtonProps>
             initial="initial"
             animate="animate"
             className="absolute bg-white/30 rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-            style={{ left: x, top: y, width: 100, height: 100 }} 
+            style={{ left: x, top: y, width: 100, height: 100 }}
           />
         ))}
         {children}
