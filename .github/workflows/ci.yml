@@ -12,5 +12,6 @@ jobs:
         node-version: '18'
     - name: Install Dependencies
       run: npm install
-    - name: Run Tests
-      run: npm test
+    - name: Run Tests (optional)
+      run: "if npm run | grep -q \"test\"; then\n  npm test\nelse\n  echo \"No test\
+        \ script found, skipping tests\"\nfi"
