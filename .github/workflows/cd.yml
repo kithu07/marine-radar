@@ -12,13 +12,15 @@ jobs:
 
       - name: Create Default Dockerfile
         run: |
-          echo "FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-EXPOSE 3000
-CMD [\"npm\", \"start\"]" > Dockerfile
+          cat <<EOF > Dockerfile
+          FROM node:18-alpine
+          WORKDIR /app
+          COPY package*.json ./
+          RUN npm install
+          COPY . .
+          EXPOSE 3000
+          CMD [\"npm\", \"start\"]
+          EOF
 
       - name: Azure Login
         uses: azure/login@v2
