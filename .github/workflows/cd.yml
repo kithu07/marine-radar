@@ -1,13 +1,13 @@
-name: AKS CD Pipeline
+name: AKS CD Pipelinee
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "master"]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
+    steps:- 
       - uses: actions/checkout@v4
 
       - name: Azure Login
