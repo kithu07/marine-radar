@@ -10,6 +10,16 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
 
+      - name: Create Default Dockerfile
+        run: |
+          echo "FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD [\"npm\", \"start\"]" > Dockerfile
+
       - name: Azure Login
         uses: azure/login@v2
         with:
